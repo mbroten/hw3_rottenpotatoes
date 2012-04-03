@@ -48,7 +48,12 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   And I should not see "Chocolat"
 
 Scenario: no ratings selected
-  # see assignment
+  When I uncheck the following ratings: G, PG, PG-13, R
+  And I press "ratings_submit"
+  Then I should see none of the movies
 
 Scenario: all ratings selected
-  # see assignment
+  When I check the following ratings: G, PG, PG-13, R
+  And I press "ratings_submit"
+  Then I should see all of the movies
+
