@@ -13,8 +13,13 @@ end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
-  #  page.content  is the entire content of the page as a string.
-  assert false, "Unimplmemented"
+  e1_index = page.body.index(e1)
+  assert e1_index != nil, "Expected #{e1} to be found in #{page.body}"
+
+  e2_index = page.body.index(e2)
+  assert e2_index != nil, "Expected #{e2} to be found in #{page.body}"
+
+  assert e1_index < e2_index, "Expected #{e1_index} to be less than #{e2_index}"
 end
 
 # Make it easier to express checking or unchecking several boxes at once
