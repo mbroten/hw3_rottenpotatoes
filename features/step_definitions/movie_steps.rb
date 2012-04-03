@@ -31,3 +31,14 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
     step 'I ' + action  + ' "ratings_' + rating.strip + '"'
   end
 end
+
+Then /I should see all of the movies/ do
+  rows = all("table#movies tr").count - 1
+  assert rows.should == Movie.all.count
+end
+
+Then /I should see none of the movies/ do
+  rows = all("table#movies tr").count - 1
+  assert rows.should == 0
+end
+
